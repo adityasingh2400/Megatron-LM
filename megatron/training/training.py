@@ -190,7 +190,8 @@ from megatron.training.initialize import initialize_megatron
 from megatron.training.initialize import write_args_to_tensorboard
 from megatron.training.initialize import set_jit_fusion_options
 from megatron.training.config import FaultInjectorConfig
-from megatron.training.utils import get_batch_on_this_cp_rank, get_batch_on_this_tp_rank, is_hybrid_model
+from megatron.core.utils import get_batch_on_this_cp_rank
+from megatron.training.utils import get_batch_on_this_tp_rank, is_hybrid_model
 from megatron.training.datasets.data_samplers import build_pretraining_data_loader
 from megatron.core.datasets.data_schedule import HybridCPDataLoaderWrapper
 from megatron.core.optimizer_param_scheduler import OptimizerParamScheduler
@@ -225,6 +226,7 @@ from megatron.core.num_microbatches_calculator import (
 )
 
 from .async_utils import maybe_finalize_async_save
+from megatron.core.utils import unwrap_model
 from .utils import (
     append_to_progress_log,
     calc_params_l2_norm,
@@ -235,7 +237,6 @@ from .utils import (
     print_rank_0,
     print_rank_last,
     report_memory,
-    unwrap_model,
     update_use_dist_ckpt,
     to_empty_if_meta_device,
 )
